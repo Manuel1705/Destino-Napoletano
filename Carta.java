@@ -170,6 +170,6 @@ public class Carta {
         return descrizione;
     }
     public String toString() {
-        return valore + " di " + seme + " (" + verso + ")" + ": " + descrizione;
+        return valore + " di " + seme + " (" + verso + ")" + ":\n" + descrizione;
     }
 }
