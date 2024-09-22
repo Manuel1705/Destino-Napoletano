@@ -106,7 +106,7 @@ public class Carta {
         descrizioni.put(chiave(Seme.BASTONI, Valore.FANTE, Verso.CAPOVOLTA), "Il consultante stanno passando un periodo di stanchezza e inattività, oppure con qualche problema di salute.");
 
         descrizioni.put(chiave(Seme.BASTONI, Valore.CAVALLO, Verso.DRITTA), "Rappresenta un viaggio, una partenza, uno spostamento finisco. Uno spostamento generalmente lungo a seconda delle carte circostanti.");
-        descrizioni.put(chiave(Seme.BASTONI, Valore.CAVALLO, Verso.CAPOVOLTA), "Come il Tre di Bastoni significa rottura.");
+        descrizioni.put(chiave(Seme.BASTONI, Valore.CAVALLO, Verso.CAPOVOLTA), "Una rottura, lavorativa o sentimentale.");
 
         descrizioni.put(chiave(Seme.BASTONI, Valore.RE, Verso.DRITTA), "Il consultante è una persona energica, molto attiva e determinata. Buona salute. Una persona che ha il controllo della situazione.");
         descrizioni.put(chiave(Seme.BASTONI, Valore.RE, Verso.CAPOVOLTA), "Il consultante stanno passando un periodo di stanchezza e inattività, oppure con qualche problema di salute.");
@@ -131,7 +131,7 @@ public class Carta {
         descrizioni.put(chiave(Seme.SPADE, Valore.SEI, Verso.CAPOVOLTA), "Indica I nemici, la falsità e le cose nascoste. Delle situazioni insidiose perché non si conoscono bene. Il significato più leggero di questa carta simboleggia una situazione o una persona che si conosce poco.");
 
         descrizioni.put(chiave(Seme.SPADE, Valore.SETTE, Verso.DRITTA), "Rappresenta un fallimento. Quando questa carta risponde ad una domanda significa che quella cosa non avverrà.");
-        descrizioni.put(chiave(Seme.SPADE, Valore.SETTE, Verso.CAPOVOLTA), "Come sopra ma più leggera. Un problema esiste ma sarà risolvibile in futuro.");
+        descrizioni.put(chiave(Seme.SPADE, Valore.SETTE, Verso.CAPOVOLTA), "Un problema esiste ma sarà risolvibile in futuro.");
         descrizioni.put(chiave(Seme.SPADE, Valore.FANTE, Verso.DRITTA), "Possono rappresentare un consultante fermo sulle proprie posizioni, rigido, che non fa un passo in dietro. Un consultante che si rifiuta di analizzare la situazione e magari imparare dai propri errori. Potrebbe rappresentare anche un dolore in sospeso.");
         descrizioni.put(chiave(Seme.SPADE, Valore.FANTE, Verso.CAPOVOLTA), "Il consultante è molto arrabbiato e agguerrito. La ragione di questo ce la diranno le carte circostanti.");
 
@@ -155,7 +155,6 @@ public class Carta {
     public void setDescrizione() {
         String chiave = chiave(seme, valore, verso);
         this.descrizione = descrizioni.getOrDefault(chiave, "Descrizione non disponibile");
-        
     }
     public Seme getSeme() {
         return seme;
@@ -170,6 +169,26 @@ public class Carta {
         return descrizione;
     }
     public String toString() {
-        return valore + " di " + seme + " (" + verso + ")" + ":\n" + descrizione;
+        String RESET = "\u001B[0m";
+        String RED = "\u001B[31m";
+        String GREEN = "\u001B[32m";
+        String YELLOW = "\u001B[33m";
+        String BLUE = "\u001B[34m";
+        String color = RESET;
+        switch (seme) {
+            case COPPE:
+                color = RED;
+                break;
+            case DENARI:
+                color = YELLOW;
+                break;
+            case SPADE:
+                color = BLUE;
+                break;
+            case BASTONI:
+                color = GREEN;
+                break;
+        }
+        return color + valore + " di " + seme + " (" + verso + ")" + ":\n" + RESET + descrizione;
     }
 }
